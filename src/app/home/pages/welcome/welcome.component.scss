@@ -1,0 +1,41 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.container {
+  margin: 25px auto 100px auto;
+}
+.main-content__title {
+  font-size: 45px;
+}
+.main-content__title--space {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-content__title--color {
+  color: #f47b0a;
+}
+
+@media (min-width: 768px) {
+  .main-content__title {
+    font-size: 60px;
+  }
+  .container {
+    margin: 25px auto 80px auto;
+  }
+}
+@media (min-width: 1024px) {
+  .main-content__title {
+    font-size: 80px;
+  }
+  .main-content__button {
+    padding: 0.9375rem 1.5625rem;
+  }
+  .container {
+    margin: 25px auto 100px auto;
+  }
+}
