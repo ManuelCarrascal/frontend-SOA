@@ -13,6 +13,7 @@
           placeholder="correo@correo.com"
           pTooltip="Ingresa tu correo electrónico"
           tooltipPosition="left"
+          [pKeyFilter]="blockChars"
         />
       </div>
       <div
@@ -26,6 +27,7 @@
           placeholder="**********"
           pTooltip="Ingresa tu contraseña"
           tooltipPosition="left"
+          [pKeyFilter]="blockChars"
         />
       </div>
       <p-button

@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -20,6 +21,7 @@ import { TooltipModule } from 'primeng/tooltip';
     DividerModule,
     CardModule,
     TooltipModule,
+    KeyFilterModule,
   ],
 })
 export class LoginModule {}
