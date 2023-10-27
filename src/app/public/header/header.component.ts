@@ -16,6 +16,7 @@ export class HeaderComponent {
         icon: 'pi pi-fw pi-user',
         routerLink: ['/dashboard/artistas'],
         
+        
       },
 
       {

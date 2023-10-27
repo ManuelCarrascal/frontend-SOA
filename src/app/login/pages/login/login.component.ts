@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  value: string | number = '';
+  email: string | number = '';
   password: string = '';
   blockChars: RegExp = /^[^<>*!'`]+$/;
 }

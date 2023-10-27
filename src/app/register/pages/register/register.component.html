@@ -1,1 +1,99 @@
-<p>register works!</p>
+<p-card>
+  <div>
+    <div
+      class="flex flex-column align-items-center justify-content-center gap-3 py-5 px-5"
+    >
+      <div class="flex flex-wrap justify-content-center gap-2">
+        <label class="w-10 text-left">Nombre</label>
+        <input
+          pInputText
+          id="name"
+          class="p-inputtext w-100"
+          aria-describedby="name-help"
+          [(ngModel)]="name"
+          placeholder="Ingresa tu nombre real"
+          pTooltip="Ingresa tu nombre real"
+          tooltipPosition="left"
+          [pKeyFilter]="blockChars"
+        />
+      </div>
+      <div class="flex flex-wrap justify-content-center gap-2">
+        <label class="w-9 text-left">Nombre Artístico</label>
+        <input
+          class="p-inputtext w-100"
+          pInputText
+          id="nameArtistic"
+          aria-describedby="nameArtistic-help"
+          [(ngModel)]="nameArtistic"
+          placeholder="Ingresa tu nombre artístico"
+          pTooltip="Ingresa tu nombre artístico"
+          tooltipPosition="left"
+          [pKeyFilter]="blockChars"
+        />
+      </div>
+      <div class="flex flex-wrap justify-content-center gap-2">
+        <label class="w-10">Email</label>
+        <input
+          class="w-100"
+          pInputText
+          id="email"
+          aria-describedby="email-help"
+          [(ngModel)]="email"
+          placeholder="Ingresa tu email"
+          pTooltip="Ingresa tu Correo electrónico"
+          tooltipPosition="left"
+          [pKeyFilter]="blockChars"
+        />
+      </div>
+      <div class="flex flex-wrap justify-content-center gap-2">
+        <label class="w-9">Contraseña</label>
+        <p-password
+          class="input-password"
+          placeholder="Ingresa una contraseña"
+          [(ngModel)]="password"
+          [toggleMask]="true"
+          [pKeyFilter]="blockChars"
+          weakLabel="Débil"
+          mediumLabel="Medio"
+          strongLabel="Fuerte"
+          promptLabel="Ingresa una contraseña"
+          [inputStyle]="{ 'padding-right': '0.5rem' }"
+        ></p-password>
+      </div>
+      <div class="flex flex-wrap justify-content-center gap-2">
+        <label class="w-9">Teléfono</label>
+        <p-inputMask
+          class="input-phone"
+          mask="(999) 999-9999"
+          [(ngModel)]="phone"
+          placeholder="(999) 999-9999"
+          pTooltip="Ingresa tu número de teléfono"
+          tooltipPosition="left"
+          type="phone"
+          [size]="20"
+          [pKeyFilter]="blockChars"
+        ></p-inputMask>
+      </div>
+      <div class="flex flex-wrap justify-content-center gap-2">
+        <label class="w-9">Biografía</label>
+        <textarea
+          class="input-biography"
+          [(ngModel)]="biography"
+          rows="5"
+          cols="30"
+          maxlength="120"
+          pInputTextarea
+          [autoResize]="true"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="w-full flex align-items-center justify-content-center py-2">
+    <p-button
+      label="Registrarse"
+      icon="pi pi-user-plus"
+      styleClass="p-button-success w-10rem"
+      routerLink="/login"
+    ></p-button>
+  </div>
+</p-card>
