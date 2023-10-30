@@ -1,0 +1,15 @@
+footer {
+  background-color: #091a32;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0rem;
+  width: 100%;
+  justify-content: center;
+}
