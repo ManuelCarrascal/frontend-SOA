@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ProductService } from '../../product.service';
 import { ProductoInterface } from 'src/app/interface/producto-interface';
@@ -8,7 +8,7 @@ import { ProductoInterface } from 'src/app/interface/producto-interface';
   styleUrls: ['./crud-table.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
-export class CrudTableComponent {
+export class CrudTableComponent implements OnInit {
   lastId: number = 0;
   productDialog: boolean = false;
   products: any[] = [];
