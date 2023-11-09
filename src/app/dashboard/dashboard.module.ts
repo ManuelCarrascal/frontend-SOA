@@ -12,7 +12,6 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
-import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
@@ -38,7 +37,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     FileUploadModule,
     TableModule,
     TagModule,
-    HttpClientModule,
     InputTextModule,
     DialogModule,
     DropdownModule,
