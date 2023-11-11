@@ -5,16 +5,30 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
+import { LoaderService } from '../public/loader.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
-
+  constructor(private loader: LoaderService) {}
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    let cloneReq = request;
+    this.loader.setActive();
+
+    if (localStorage.getItem('token_auth')) {
+      cloneReq = request.clone({
+        setHeaders: {
+          Authorization: localStorage.getItem('token_auth')!,
+        },
+      });
+    }
+    return next.handle(cloneReq).pipe(
+      finalize(() => {
+        this.loader.setInactive();
+      })
+    );
   }
 }

@@ -29,13 +29,6 @@
         chooseLabel="Import"
         class="mr-2 inline-block"
       ></p-fileUpload>
-      <button
-        pButton
-        pRipple
-        label="Export"
-        icon="pi pi-upload"
-        class="p-button-help"
-      ></button>
     </ng-template>
   </p-toolbar>
   <p-table
@@ -87,7 +80,6 @@
           <p-tableCheckbox [value]="product"></p-tableCheckbox>
         </td>
         <td>{{ product.title }}</td>
-        <!-- Cambia 'name' a 'title' -->
         <td>
           <div *ngIf="product.description.length > 50; else shortDescription">
             {{ product.description | slice : 0 : 50 }}...
@@ -98,7 +90,6 @@
         </td>
         <td>{{ product.price | currency : "USD" }}</td>
         <td>{{ product.category.name }}</td>
-        <!-- Cambia 'category' a 'category.name' -->
         <td>
           <button
             pButton

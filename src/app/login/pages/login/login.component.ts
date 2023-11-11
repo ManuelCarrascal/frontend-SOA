@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
+import { TokenInterface } from 'src/app/interface/token-interface';
 
 @Component({
   selector: 'app-login',
@@ -9,4 +13,26 @@ export class LoginComponent {
   email: string | number = '';
   password: string = '';
   blockChars: RegExp = /^[^<>*!'`]+$/;
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private act: Router
+  ) {}
+
+  form = this.fb.group({
+    email: [''],
+    password: [''],
+  });
+
+  enviar() {
+    this.auth.getToken(this.form.value).subscribe(
+      (arg: TokenInterface) => {
+        localStorage.setItem('token_access', arg.access_token);
+        this.act.navigate(['dashboard']);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  }
 }

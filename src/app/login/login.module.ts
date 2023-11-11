@@ -9,6 +9,7 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -22,6 +23,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     CardModule,
     TooltipModule,
     KeyFilterModule,
+    ReactiveFormsModule,
   ],
 })
 export class LoginModule {}

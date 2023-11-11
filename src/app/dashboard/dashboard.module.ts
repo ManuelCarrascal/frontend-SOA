@@ -19,6 +19,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputNumberModule,
     FormsModule,
     InputTextareaModule,
+    SkeletonModule,
   ],
 })
 export class DashboardModule {}

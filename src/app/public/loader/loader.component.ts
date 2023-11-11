@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { LoaderService } from '../loader.service';
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.scss']
+  styleUrls: ['./loader.component.scss'],
 })
 export class LoaderComponent {
+  constructor(private activeLoader: LoaderService) {}
 
+  active$ = this.activeLoader.active$;
 }

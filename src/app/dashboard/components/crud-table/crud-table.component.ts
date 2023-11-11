@@ -30,7 +30,6 @@ export class CrudTableComponent implements OnInit {
   ngOnInit() {
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
-      console.log(this.products);
     });
   }
 

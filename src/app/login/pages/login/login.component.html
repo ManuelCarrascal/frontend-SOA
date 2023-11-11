@@ -3,39 +3,47 @@
     <div
       class="w-w-6 md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5 px-5"
     >
-      <div class="flex flex-wrap justify-content-center gap-2">
-        <label class="w-11">Email</label>
-        <input
-          pInputText
-          id="email"
-          aria-describedby="email-help"
-          [(ngModel)]="email"
-          placeholder="correo@correo.com"
-          pTooltip="Ingresa tu correo electrónico"
-          tooltipPosition="left"
-          [pKeyFilter]="blockChars"
-        />
-      </div>
-      <div
-        class="flex flex-wrap justify-content-center align-items-center gap-2"
+      <form
+        [formGroup]="form"
+        (submit)="enviar()"
+        class="flex flex-column gap-2"
       >
-        <label class="w-11">Contraseña</label>
-        <input
-          pInputText
-          id="password"
-          type="password"
-          placeholder="**********"
-          pTooltip="Ingresa tu contraseña"
-          tooltipPosition="left"
-          [pKeyFilter]="blockChars"
-        />
-      </div>
-      <p-button
-        label="Acceder"
-        icon="pi pi-user"
-        styleClass="w-10rem mx-auto"
-        routerLink="/dashboard"
-      ></p-button>
+        <div class="flex flex-wrap justify-content-center gap-2">
+          <label class="w-11">Email</label>
+          <input
+            pInputText
+            id="email"
+            aria-describedby="email-help"
+            [(ngModel)]="email"
+            placeholder="correo@correo.com"
+            pTooltip="Ingresa tu correo electrónico"
+            tooltipPosition="left"
+            [pKeyFilter]="blockChars"
+            formControlName="email"
+          />
+        </div>
+        <div
+          class="flex flex-wrap justify-content-center align-items-center gap-2"
+        >
+          <label class="w-11">Contraseña</label>
+          <input
+            pInputText
+            id="password"
+            type="password"
+            placeholder="**********"
+            pTooltip="Ingresa tu contraseña"
+            tooltipPosition="left"
+            [pKeyFilter]="blockChars"
+            formControlName="password"
+          />
+        </div>
+        <p-button
+          label="Acceder"
+          icon="pi pi-user"
+          styleClass="w-10rem mx-auto"
+          type="submit"
+        ></p-button>
+      </form>
     </div>
     <div class="w-full md:w-2">
       <p-divider layout="vertical" styleClass="hidden md:flex"
