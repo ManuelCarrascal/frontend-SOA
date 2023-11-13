@@ -14,12 +14,17 @@
             pInputText
             id="email"
             aria-describedby="email-help"
-            [(ngModel)]="email"
             placeholder="correo@correo.com"
             pTooltip="Ingresa tu correo electrónico"
             tooltipPosition="left"
             [pKeyFilter]="blockChars"
             formControlName="email"
+            [ngClass]="{
+              'border-red':
+                (form.controls.email.errors?.['required'] &&
+                  (form.controls.email.dirty || form.controls.email.touched)) ||
+                authError
+            }"
           />
         </div>
         <div
@@ -35,12 +40,25 @@
             tooltipPosition="left"
             [pKeyFilter]="blockChars"
             formControlName="password"
+            [ngClass]="{
+              'border-red':
+                (form.controls.password.errors?.['required'] &&
+                  (form.controls.password.dirty ||
+                    form.controls.password.touched)) ||
+                authError
+            }"
           />
+          <div>
+            <small class="mt-2 error-message" *ngIf="authError">
+              Usuario no encontrado
+            </small>
+            <small class="mt-2 error-message" *ngIf="!authError">&nbsp;</small>
+          </div>
         </div>
         <p-button
           label="Acceder"
           icon="pi pi-user"
-          styleClass="w-10rem mx-auto"
+          styleClass="w-10rem mx-auto flex mt-2"
           type="submit"
         ></p-button>
       </form>

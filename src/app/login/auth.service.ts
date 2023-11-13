@@ -14,4 +14,8 @@ export class AuthService {
   getToken(informacion: AuthInterface | any) {
     return this.http.post<TokenInterface>(`${this.baseUrl}`, informacion);
   }
+
+  logout() {
+    localStorage.removeItem('token_access');
+  }
 }

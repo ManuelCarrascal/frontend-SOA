@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 export class LoaderService {
   constructor() {}
   active$ = new Subject<string>();
-  activeDos = '';
 
   setActive() {
     this.active$.next('active');

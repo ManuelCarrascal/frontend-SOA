@@ -11,13 +11,9 @@ import { ProductoInterface } from 'src/app/interface/producto-interface';
 export class CrudTableComponent implements OnInit {
   lastId: number = 0;
   productDialog: boolean = false;
-  products: any[] = [];
-  product: ProductoInterface = {
-    id: 0,
-    title: '',
-    price: 0,
-    category: { id: 0, name: '' },
-  };
+  products!: ProductoInterface[];
+  product!: ProductoInterface;
+  selectedProducts!: ProductoInterface[] | null;
 
   submitted: boolean = false;
 
@@ -59,8 +55,8 @@ export class CrudTableComponent implements OnInit {
   }
   deleteProduct(product: ProductoInterface) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + product.title + '?',
-      header: 'Confirm',
+      message: '¿Estas seguro que deseas eliminar ' + product.title + '?',
+      header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.products = this.products.filter((val) => val.id !== product.id);
@@ -70,10 +66,25 @@ export class CrudTableComponent implements OnInit {
           price: 0,
           category: { id: 0, name: '' },
         };
+      },
+    });
+  }
+
+  deleteSelectedProducts() {
+    this.confirmationService.confirm({
+      message:
+        '¿Estás seguro de que quieres eliminar los productos seleccionados?',
+      header: 'Confirmación',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.products = this.products.filter(
+          (val) => !this.selectedProducts?.includes(val)
+        );
+        this.selectedProducts = null;
         this.messageService.add({
           severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Deleted',
+          summary: 'Exitoso',
+          detail: 'Productos Eliminados',
           life: 3000,
         });
       },
@@ -93,8 +104,8 @@ export class CrudTableComponent implements OnInit {
         this.products[this.findIndexById(this.product.id)] = this.product;
         this.messageService.add({
           severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Updated',
+          summary: 'Exitoso',
+          detail: 'Producto Actualizado',
           life: 3000,
         });
       } else {
@@ -102,8 +113,8 @@ export class CrudTableComponent implements OnInit {
         this.products.push(this.product);
         this.messageService.add({
           severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Created',
+          summary: 'Exitoso',
+          detail: 'Producto Creado',
           life: 3000,
         });
       }

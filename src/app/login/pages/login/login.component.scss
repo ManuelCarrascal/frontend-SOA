@@ -1,5 +1,15 @@
 @media (max-width: 767px) {
-  p-card{
+  p-card {
     width: 85%;
   }
+}
+.ng-invalid {
+  border-color: red;
+}
+
+.border-red {
+  border-color: red;
+}
+.error-message {
+  min-height: 20px;
 }

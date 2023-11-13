@@ -1,12 +1,12 @@
 <app-header></app-header>
-<div class="card">
+<div class="card min-h-screen">
   <p-toast></p-toast>
   <p-toolbar styleClass="mb-2 mt-2 gap-2">
     <ng-template pTemplate="left">
       <button
         pButton
         pRipple
-        label="New"
+        label="Nuevo"
         icon="pi pi-plus"
         class="p-button-success mr-2"
         (click)="openNew()"
@@ -14,21 +14,12 @@
       <button
         pButton
         pRipple
-        label="Delete"
+        label="Eliminar"
         icon="pi pi-trash"
         class="p-button-danger"
+        (click)="deleteSelectedProducts()"
+        [disabled]="!selectedProducts || !selectedProducts.length"
       ></button>
-    </ng-template>
-
-    <ng-template pTemplate="right">
-      <p-fileUpload
-        mode="basic"
-        accept="image/*"
-        [maxFileSize]="1000000"
-        label="Import"
-        chooseLabel="Import"
-        class="mr-2 inline-block"
-      ></p-fileUpload>
     </ng-template>
   </p-toolbar>
   <p-table
@@ -42,17 +33,18 @@
       'max-height': '500px',
       overflow: 'auto'
     }"
+    [(selection)]="selectedProducts"
     [rowHover]="true"
     dataKey="id"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} entradas"
     [showCurrentPageReport]="true"
   >
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
-        <h5 class="m-0">Manage Products</h5>
+        <h5 class="m-0">Gestionar productos</h5>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
-          <input pInputText type="text" placeholder="Search..." />
+          <input pInputText type="text" placeholder="Buscar..." />
         </span>
       </div>
     </ng-template>
@@ -103,6 +95,7 @@
             pRipple
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
+            (click)="deleteProduct(product)"
           ></button>
         </td>
       </tr>
@@ -164,7 +157,7 @@
     <button
       pButton
       pRipple
-      label="Cancel"
+      label="Cancelar"
       icon="pi pi-times"
       class="p-button-text"
       (click)="hideDialog()"
@@ -172,7 +165,7 @@
     <button
       pButton
       pRipple
-      label="Save"
+      label="Guardar"
       icon="pi pi-check"
       class="p-button-text"
       (click)="saveProduct()"
@@ -180,5 +173,8 @@
   </ng-template>
 </p-dialog>
 
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-confirmDialog
+  [style]="{ width: '450px' }"
+  acceptLabel="Si"
+></p-confirmDialog>
 <app-footer></app-footer>
