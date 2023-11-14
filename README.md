@@ -1,27 +1,34 @@
-# FrontendSoa
+# Frontend SOA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 16.2.7.
 
-## Development server
+## Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este proyecto utiliza Angular como framework de desarrollo y PrimeNG como biblioteca de componentes de UI. Se conecta a la API de Platzi Fake API para obtener y manipular datos.
 
-## Code scaffolding
+## Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Antes de iniciar el servidor de desarrollo, debes instalar las dependencias del proyecto. Ejecuta `npm i` en la raíz del proyecto para hacerlo.
 
-## Build
+## Servidor de desarrollo
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ejecuta `ng serve` para un servidor de desarrollo. Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambias alguno de los archivos fuente.
 
-## Running unit tests
+## Construcción
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ejecuta `ng build` para construir el proyecto. Los artefactos de construcción se almacenarán en el directorio `dist/`.
 
-## Running end-to-end tests
+## Ejecución de pruebas unitarias
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Ejecuta `ng test` para ejecutar las pruebas unitarias a través de [Karma](https://karma-runner.github.io).
 
-## Further help
+## API
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Este proyecto utiliza la API de Platzi Fake API. Aquí están los endpoints utilizados:
+
+- Productos: `https://api.escuelajs.co/api/v1/products`
+- Usuarios: `https://api.escuelajs.co/api/v1/users`
+
+## Más ayuda
+
+Para obtener más ayuda sobre Angular CLI, usa `ng help` o visita el [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
