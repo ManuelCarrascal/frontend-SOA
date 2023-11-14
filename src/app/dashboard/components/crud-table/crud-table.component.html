@@ -56,7 +56,7 @@
         <th pSortableColumn="title" style="min-width: 15rem">
           Title <p-sortIcon field="title"></p-sortIcon>
         </th>
-        <th>Description</th>
+        <th>Image</th>
         <th pSortableColumn="price">
           Price <p-sortIcon field="price"></p-sortIcon>
         </th>
@@ -72,14 +72,15 @@
           <p-tableCheckbox [value]="product"></p-tableCheckbox>
         </td>
         <td>{{ product.title }}</td>
-        <td>
-          <div *ngIf="product.description.length > 50; else shortDescription">
-            {{ product.description | slice : 0 : 50 }}...
-          </div>
-          <ng-template #shortDescription>
-            {{ product.description }}
-          </ng-template>
-        </td>
+        <img
+          *ngIf="product.images && product.images.length > 0"
+          [src]="product.images[0]"
+          alt="{{ product.title }}"
+          width="50"
+          height="50"
+          class="shadow-4"
+        />
+
         <td>{{ product.price | currency : "USD" }}</td>
         <td>{{ product.category.name }}</td>
         <td>
@@ -108,7 +109,7 @@
 <p-dialog
   [(visible)]="productDialog"
   [style]="{ width: '450px' }"
-  header="Product Details"
+  header="Detalles del producto"
   [modal]="true"
   styleClass="p-fluid"
 >
@@ -137,6 +138,20 @@
         rows="3"
         cols="20"
       ></textarea>
+    </div>
+    <div class="field">
+      <label for="category">Category</label>
+      <input
+        type="text"
+        pInputText
+        id="category"
+        [(ngModel)]="product.category.name"
+        required
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !product.category.name"
+        >Category is required.</small
+      >
     </div>
 
     <div class="formgrid grid">

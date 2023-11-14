@@ -34,6 +34,7 @@ export class CrudTableComponent implements OnInit {
       id: 0,
       title: '',
       price: 0,
+      images: [],
       category: { id: 0, name: '' },
     };
     this.submitted = false;
@@ -64,6 +65,7 @@ export class CrudTableComponent implements OnInit {
           id: 0,
           title: '',
           price: 0,
+          images: [],
           category: { id: 0, name: '' },
         };
       },
@@ -125,6 +127,7 @@ export class CrudTableComponent implements OnInit {
         id: 0,
         title: '',
         price: 0,
+        images: [],
         category: { id: 0, name: '' },
       };
     }
