@@ -1,56 +1,82 @@
 <p-card>
   <div>
     <div
-      class="flex flex-column align-items-center justify-content-center gap-3 py-5 px-5"
+      class="flex flex-column align-items-center justify-content-center justify-content-center gap-3 py-5 px-5"
     >
-      <div class="flex flex-wrap justify-content-center gap-2">
-        <label class="w-10 text-left">Nombre</label>
+      <div class="flex flex-wrap justify-content-center gap-2 flex-column">
+        <label class="text-left">Nombre</label>
         <input
           pInputText
           id="name"
           class="p-inputtext w-100"
           aria-describedby="name-help"
-          [(ngModel)]="name"
+          [ngModel]="nombre"
+          (ngModelChange)="nombre = $event.toString()"
           placeholder="Ingresa tu nombre real"
           pTooltip="Ingresa tu nombre real"
           tooltipPosition="left"
           [pKeyFilter]="blockChars"
         />
+        <p-message
+          class="error-message"
+          severity="error"
+          text="{{ errors.nombre }}"
+          *ngIf="errors.nombre"
+        ></p-message>
       </div>
-      <div class="flex flex-wrap justify-content-center gap-2">
-        <label class="w-9 text-left">Nombre Artístico</label>
+      <div class="flex flex-wrap justify-content-center gap-2 flex-column">
+        <label class="text-left">Nombre Artístico</label>
         <input
           class="p-inputtext w-100"
           pInputText
           id="nameArtistic"
           aria-describedby="nameArtistic-help"
-          [(ngModel)]="nameArtistic"
+          [ngModel]="nombreArtistico"
+          (ngModelChange)="nombreArtistico = $event.toString()"
           placeholder="Ingresa tu nombre artístico"
           pTooltip="Ingresa tu nombre artístico"
           tooltipPosition="left"
           [pKeyFilter]="blockChars"
         />
+        <p-message
+          class="error-message"
+          severity="error"
+          text="{{ errors.nombreArtistico }}"
+          *ngIf="errors.nombreArtistico"
+        ></p-message>
       </div>
-      <div class="flex flex-wrap justify-content-center gap-2">
+      <div
+        class="flex flex-wrap justify-content-center align-items-center gap-2 flex-column"
+      >
         <label class="w-10">Email</label>
         <input
           class="w-100"
           pInputText
           id="email"
           aria-describedby="email-help"
-          [(ngModel)]="email"
+          [ngModel]="correo"
+          (ngModelChange)="correo = $event.toString()"
           placeholder="Ingresa tu email"
           pTooltip="Ingresa tu Correo electrónico"
           tooltipPosition="left"
           [pKeyFilter]="blockChars"
         />
+        <p-message
+          class="error-message"
+          severity="error"
+          text="{{ errors.correo }}"
+          *ngIf="errors.correo"
+        ></p-message>
       </div>
-      <div class="flex flex-wrap justify-content-center gap-2">
+      <div
+        class="flex flex-wrap justify-content-center align-items-center gap-2 flex-column"
+      >
         <label class="w-9">Contraseña</label>
         <p-password
           class="input-password"
           placeholder="Ingresa una contraseña"
-          [(ngModel)]="password"
+          [ngModel]="contrasena"
+          (ngModelChange)="contrasena = $event.toString()"
           [toggleMask]="true"
           [pKeyFilter]="blockChars"
           weakLabel="Débil"
@@ -59,13 +85,22 @@
           promptLabel="Ingresa una contraseña"
           [inputStyle]="{ 'padding-right': '0.5rem' }"
         ></p-password>
+        <p-message
+          class="error-message"
+          severity="error"
+          text="{{ errors.contrasena }}"
+          *ngIf="errors.contrasena"
+        ></p-message>
       </div>
-      <div class="flex flex-wrap justify-content-center gap-2">
+      <div
+        class="flex flex-wrap justify-content-center align-items-center gap-2 flex-column"
+      >
         <label class="w-9">Teléfono</label>
         <p-inputMask
           class="input-phone"
           mask="(999) 999-9999"
-          [(ngModel)]="phone"
+          [ngModel]="telefono"
+          (ngModelChange)="telefono = $event.toString()"
           placeholder="(999) 999-9999"
           pTooltip="Ingresa tu número de teléfono"
           tooltipPosition="left"
@@ -73,12 +108,21 @@
           [size]="20"
           [pKeyFilter]="blockChars"
         ></p-inputMask>
+        <p-message
+          class="error-message"
+          severity="error"
+          text="{{ errors.telefono }}"
+          *ngIf="errors.telefono"
+        ></p-message>
       </div>
-      <div class="flex flex-wrap justify-content-center gap-2">
+      <div
+        class="flex flex-wrap justify-content-center align-items-center gap-2 flex-column"
+      >
         <label class="w-9">Biografía</label>
         <textarea
           class="input-biography"
-          [(ngModel)]="biography"
+          [ngModel]="biografia"
+          (ngModelChange)="biografia = $event.toString()"
           rows="5"
           cols="30"
           maxlength="120"
@@ -88,15 +132,21 @@
           tooltipPosition="left"
           placeholder="Ingresa una breve descripción de ti."
         ></textarea>
+        <p-message
+          class="error-message"
+          severity="error"
+          text="{{ errors.biografia }}"
+          *ngIf="errors.biografia"
+        ></p-message>
       </div>
     </div>
   </div>
-  <div class="w-full flex align-items-center justify-content-center py-2">
+  <div class="w-full flex align-items-center gap-2 justify-content-center py-2">
     <p-button
       label="Registrarse"
       icon="pi pi-user-plus"
       styleClass="p-button-success w-10rem"
-      routerLink="/login"
+      (onClick)="register()"
     ></p-button>
   </div>
 </p-card>

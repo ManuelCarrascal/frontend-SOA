@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [RegisterComponent],
@@ -30,6 +30,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     PasswordModule,
     InputMaskModule,
     InputTextareaModule,
+    MessageModule,
   ],
 })
 export class RegisterModule {}

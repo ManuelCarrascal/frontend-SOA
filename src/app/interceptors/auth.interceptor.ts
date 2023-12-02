@@ -18,7 +18,10 @@ export class AuthInterceptor implements HttpInterceptor {
     let cloneReq = request;
     this.loader.setActive();
 
-    if (localStorage.getItem('token_auth')) {
+    if (
+      localStorage.getItem('token_auth') &&
+      !request.url.endsWith('/register')
+    ) {
       cloneReq = request.clone({
         setHeaders: {
           Authorization: localStorage.getItem('token_auth')!,
