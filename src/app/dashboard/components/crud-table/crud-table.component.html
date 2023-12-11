@@ -18,13 +18,13 @@
         icon="pi pi-trash"
         class="p-button-danger"
         (click)="deleteSelectedProducts()"
-        [disabled]="!selectedProducts || !selectedProducts.length"
+        [disabled]="!selectedArtist || !selectedArtist.length"
       ></button>
     </ng-template>
   </p-toolbar>
   <p-table
     #dt
-    [value]="products"
+    [value]="artistas"
     [rows]="11"
     [paginator]="true"
     [globalFilterFields]="['title', 'price', 'category']"
@@ -33,7 +33,7 @@
       'max-height': '500px',
       overflow: 'auto'
     }"
-    [(selection)]="selectedProducts"
+    [(selection)]="selectedArtist"
     [rowHover]="true"
     dataKey="id"
     currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} entradas"
@@ -53,50 +53,45 @@
         <th style="width: 4rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="title" style="min-width: 15rem">
-          Title <p-sortIcon field="title"></p-sortIcon>
+        <th pSortableColumn="nombreartistico" style="min-width: 15rem">
+          Nombre artistico <p-sortIcon field="nombreartistico"></p-sortIcon>
         </th>
-        <th>Image</th>
-        <th pSortableColumn="price">
-          Price <p-sortIcon field="price"></p-sortIcon>
+        <th pSortableColumn="correo" style="min-width: 15rem">
+          Correo <p-sortIcon field="correo"></p-sortIcon>
         </th>
-        <th pSortableColumn="category" style="min-width: 10rem">
-          Category <p-sortIcon field="category"></p-sortIcon>
+        <th pSortableColumn="biografia" style="min-width: 15rem">
+          Biografia <p-sortIcon field="biografia"></p-sortIcon>
         </th>
+        <th pSortableColumn="telefono" style="min-width: 15rem">
+          Telefono <p-sortIcon field="telefono"></p-sortIcon>
+        </th>
+
         <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-artista>
       <tr>
         <td>
-          <p-tableCheckbox [value]="product"></p-tableCheckbox>
+          <p-tableCheckbox [value]="artista"></p-tableCheckbox>
         </td>
-        <td>{{ product.title }}</td>
-        <img
-          *ngIf="product.images && product.images.length > 0"
-          [src]="product.images[0]"
-          alt="{{ product.title }}"
-          width="50"
-          height="50"
-          class="shadow-4"
-        />
-
-        <td>{{ product.price | currency : "USD" }}</td>
-        <td>{{ product.category.name }}</td>
+        <td>{{ artista.nombreartistico }}</td>
+        <td>{{ artista.correo }}</td>
+        <td>{{ artista.biografia }}</td>
+        <td>{{ artista.telefono }}</td>
         <td>
           <button
             pButton
             pRipple
             icon="pi pi-pencil"
             class="p-button-rounded p-button-success mr-2"
-            (click)="editProduct(product)"
+            (click)="editProduct(artista)"
           ></button>
           <button
             pButton
             pRipple
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
-            (click)="deleteProduct(product)"
+            (click)="deleteArtist(artista)"
           ></button>
         </td>
       </tr>
@@ -107,7 +102,7 @@
   </p-table>
 </div>
 <p-dialog
-  [(visible)]="productDialog"
+  [(visible)]="artistDialog"
   [style]="{ width: '450px' }"
   header="Detalles del producto"
   [modal]="true"
@@ -120,51 +115,13 @@
         type="text"
         pInputText
         id="name"
-        [(ngModel)]="product.title"
+        [(ngModel)]="artista.nombre"
         required
         autofocus
       />
-      <small class="p-error" *ngIf="submitted && !product.title"
+      <small class="p-error" *ngIf="submitted && !artista.nombre"
         >Name is required.</small
       >
-    </div>
-    <div class="field">
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        pInputTextarea
-        [(ngModel)]="product.description"
-        required
-        rows="3"
-        cols="20"
-      ></textarea>
-    </div>
-    <div class="field">
-      <label for="category">Category</label>
-      <input
-        type="text"
-        pInputText
-        id="category"
-        [(ngModel)]="product.category.name"
-        required
-        autofocus
-      />
-      <small class="p-error" *ngIf="submitted && !product.category.name"
-        >Category is required.</small
-      >
-    </div>
-
-    <div class="formgrid grid">
-      <div class="field col">
-        <label for="price">Price</label>
-        <p-inputNumber
-          id="price"
-          [(ngModel)]="product.price"
-          mode="currency"
-          currency="USD"
-          locale="en-US"
-        ></p-inputNumber>
-      </div>
     </div>
   </ng-template>
 

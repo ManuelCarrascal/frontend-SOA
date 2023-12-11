@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { ProductService } from '../../product.service';
-import { ProductoInterface } from 'src/app/interface/producto-interface';
+import { ArtistService } from '../../artist.service';
+import { ArtistaInterface } from 'src/app/interface/artista-interface';
 @Component({
   selector: 'app-crud-table',
   templateUrl: './crud-table.component.html',
@@ -10,39 +10,42 @@ import { ProductoInterface } from 'src/app/interface/producto-interface';
 })
 export class CrudTableComponent implements OnInit {
   lastId: number = 0;
-  productDialog: boolean = false;
-  products!: ProductoInterface[];
-  product!: ProductoInterface;
-  selectedProducts!: ProductoInterface[] | null;
+  artistDialog: boolean = false;
+  artistas!: ArtistaInterface[];
+  artista!: ArtistaInterface;
+  selectedArtist!: ArtistaInterface[] | null;
 
   submitted: boolean = false;
 
   constructor(
-    private productService: ProductService,
+    private artistService: ArtistService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
-    this.productService.getProducts().subscribe((data) => {
-      this.products = data;
+    this.artistService.getArtists(1, 10).subscribe((response) => {
+      this.artistas = response;
+      console.log(this.artistas);
     });
   }
 
   openNew() {
-    this.product = {
+    this.artista = {
       id: 0,
-      title: '',
-      price: 0,
-      images: [],
-      category: { id: 0, name: '' },
+      nombre: '',
+      nombreartistico: '',
+      correo: '',
+      contrasena: '',
+      telefono: '',
+      biografia: '',
     };
     this.submitted = false;
-    this.productDialog = true;
+    this.artistDialog = true;
   }
 
   findIndexById(id: number): number {
-    let index = this.products.findIndex((product) => product.id === id);
+    let index = this.artistas.findIndex((product) => product.id === id);
     return index;
   }
   createId(): number {
@@ -50,24 +53,29 @@ export class CrudTableComponent implements OnInit {
     return this.lastId;
   }
 
-  editProduct(product: ProductoInterface) {
-    this.product = { ...product };
-    this.productDialog = true;
+  editProduct(product: ArtistaInterface) {
+    this.artista = { ...product };
+    this.artistDialog = true;
   }
-  deleteProduct(product: ProductoInterface) {
+  deleteArtist(artist: ArtistaInterface) {
     this.confirmationService.confirm({
-      message: '¿Estas seguro que deseas eliminar ' + product.title + '?',
+      message:
+        '¿Estas seguro que deseas eliminar ' + artist.nombreartistico + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter((val) => val.id !== product.id);
-        this.product = {
-          id: 0,
-          title: '',
-          price: 0,
-          images: [],
-          category: { id: 0, name: '' },
-        };
+        this.artistService.deleteArtist(artist.id).subscribe(() => {
+          this.artistas = this.artistas.filter((val) => val.id !== artist.id);
+          this.artista = {
+            id: 0,
+            nombre: '',
+            nombreartistico: '',
+            correo: '',
+            contrasena: '',
+            telefono: '',
+            biografia: '',
+          };
+        });
       },
     });
   }
@@ -79,10 +87,10 @@ export class CrudTableComponent implements OnInit {
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.products = this.products.filter(
-          (val) => !this.selectedProducts?.includes(val)
+        this.artistas = this.artistas.filter(
+          (val) => !this.selectedArtist?.includes(val)
         );
-        this.selectedProducts = null;
+        this.selectedArtist = null;
         this.messageService.add({
           severity: 'success',
           summary: 'Exitoso',
@@ -94,16 +102,16 @@ export class CrudTableComponent implements OnInit {
   }
 
   hideDialog() {
-    this.productDialog = false;
+    this.artistDialog = false;
     this.submitted = false;
   }
 
   saveProduct() {
     this.submitted = true;
 
-    if (this.product.title?.trim()) {
-      if (this.product.id) {
-        this.products[this.findIndexById(this.product.id)] = this.product;
+    if (this.artista.nombre?.trim()) {
+      if (this.artista.id) {
+        this.artistas[this.findIndexById(this.artista.id)] = this.artista;
         this.messageService.add({
           severity: 'success',
           summary: 'Exitoso',
@@ -111,8 +119,8 @@ export class CrudTableComponent implements OnInit {
           life: 3000,
         });
       } else {
-        this.product.id = this.createId();
-        this.products.push(this.product);
+        this.artista.id = this.createId();
+        this.artistas.push(this.artista);
         this.messageService.add({
           severity: 'success',
           summary: 'Exitoso',
@@ -121,14 +129,16 @@ export class CrudTableComponent implements OnInit {
         });
       }
 
-      this.products = [...this.products];
-      this.productDialog = false;
-      this.product = {
+      this.artistas = [...this.artistas];
+      this.artistDialog = false;
+      this.artista = {
         id: 0,
-        title: '',
-        price: 0,
-        images: [],
-        category: { id: 0, name: '' },
+        nombre: '',
+        nombreartistico: '',
+        correo: '',
+        contrasena: '',
+        telefono: '',
+        biografia: '',
       };
     }
   }
