@@ -18,11 +18,11 @@
             pTooltip="Ingresa tu correo electrónico"
             tooltipPosition="left"
             [pKeyFilter]="blockChars"
-            formControlName="email"
+            formControlName="correo"
             [ngClass]="{
               'border-red':
-                (form.controls.email.errors?.['required'] &&
-                  (form.controls.email.dirty || form.controls.email.touched)) ||
+                (form.controls.correo.errors?.['required'] &&
+                  (form.controls.correo.dirty || form.controls.correo.touched)) ||
                 authError
             }"
           />
@@ -39,12 +39,12 @@
             pTooltip="Ingresa tu contraseña"
             tooltipPosition="left"
             [pKeyFilter]="blockChars"
-            formControlName="password"
+            formControlName="contrasena"
             [ngClass]="{
               'border-red':
-                (form.controls.password.errors?.['required'] &&
-                  (form.controls.password.dirty ||
-                    form.controls.password.touched)) ||
+                (form.controls.contrasena.errors?.['required'] &&
+                  (form.controls.contrasena.dirty ||
+                    form.controls.contrasena.touched)) ||
                 authError
             }"
           />

@@ -1,4 +1,4 @@
 export interface AuthInterface {
-  email?: string;
-  password?: string;
+  correo?: string;
+  contrasena?: string;
 }

@@ -14,8 +14,8 @@ export class LoginComponent {
   authError = false;
   formError = false;
 
-  email: string | number = '';
-  password: string = '';
+  correo: string | number = '';
+  contrasena: string = '';
   blockChars: RegExp = /^[^<>*!'`]+$/;
   constructor(
     private fb: FormBuilder,
@@ -24,24 +24,25 @@ export class LoginComponent {
   ) {}
 
   form = this.fb.group({
-    email: [''],
-    password: [''],
+    correo: [''],
+    contrasena: [''],
   });
 
   enviar() {
-    this.form.controls.email.setValidators([
+    this.form.controls.correo.setValidators([
       Validators.required,
       Validators.email,
     ]);
-    this.form.controls.password.setValidators([Validators.required]);
+    this.form.controls.contrasena.setValidators([Validators.required]);
 
-    this.form.controls.email.updateValueAndValidity();
-    this.form.controls.password.updateValueAndValidity();
+    this.form.controls.correo.updateValueAndValidity();
+    this.form.controls.contrasena.updateValueAndValidity();
 
     if (this.form.valid) {
       this.auth.getToken(this.form.value).subscribe(
         (arg: TokenInterface) => {
-          localStorage.setItem('token_access', arg.access_token);
+          localStorage.setItem('token_access', arg.token);
+
           this.act.navigate(['dashboard']);
           this.authError = false;
         },
