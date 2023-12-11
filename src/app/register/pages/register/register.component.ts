@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   nombre: string = '';
-  nombreArtistico: string = '';
+  nombreartistico: string = '';
   correo: string = '';
   contrasena: string = '';
   telefono: string = '';
@@ -22,7 +22,7 @@ export class RegisterComponent {
   register() {
     const artista = {
       nombre: this.nombre,
-      nombreArtistico: this.nombreArtistico,
+      nombreartistico: this.nombreartistico,
       correo: this.correo,
       contrasena: this.contrasena,
       telefono: this.telefono.replace(/\D/g, ''), // Esto eliminará todos los caracteres no numéricos

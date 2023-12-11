@@ -20,6 +20,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SkeletonModule } from 'primeng/skeleton';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputMaskModule } from 'primeng/inputmask';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { SkeletonModule } from 'primeng/skeleton';
     FormsModule,
     InputTextareaModule,
     SkeletonModule,
+    KeyFilterModule,
+    InputMaskModule,
+    PasswordModule,
   ],
 })
 export class DashboardModule {}

@@ -31,8 +31,8 @@
           pInputText
           id="nameArtistic"
           aria-describedby="nameArtistic-help"
-          [ngModel]="nombreArtistico"
-          (ngModelChange)="nombreArtistico = $event.toString()"
+          [ngModel]="nombreartistico"
+          (ngModelChange)="nombreartistico = $event.toString()"
           placeholder="Ingresa tu nombre artístico"
           pTooltip="Ingresa tu nombre artístico"
           tooltipPosition="left"
@@ -41,8 +41,8 @@
         <p-message
           class="error-message"
           severity="error"
-          text="{{ errors.nombreArtistico }}"
-          *ngIf="errors.nombreArtistico"
+          text="{{ errors.nombreartistico }}"
+          *ngIf="errors.nombreartistico"
         ></p-message>
       </div>
       <div

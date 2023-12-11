@@ -17,7 +17,7 @@
         label="Eliminar"
         icon="pi pi-trash"
         class="p-button-danger"
-        (click)="deleteSelectedProducts()"
+        (click)="deleteSelectedArtistas()"
         [disabled]="!selectedArtist || !selectedArtist.length"
       ></button>
     </ng-template>
@@ -27,7 +27,7 @@
     [value]="artistas"
     [rows]="11"
     [paginator]="true"
-    [globalFilterFields]="['title', 'price', 'category']"
+    [globalFilterFields]="['nombreartistico', 'biografia']"
     [tableStyle]="{
       'min-width': '75rem',
       'max-height': '500px',
@@ -42,10 +42,6 @@
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         <h5 class="m-0">Gestionar productos</h5>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input pInputText type="text" placeholder="Buscar..." />
-        </span>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -110,7 +106,7 @@
 >
   <ng-template pTemplate="content">
     <div class="field">
-      <label for="name">Name</label>
+      <label for="name">Nombre</label>
       <input
         type="text"
         pInputText
@@ -122,6 +118,93 @@
       <small class="p-error" *ngIf="submitted && !artista.nombre"
         >Name is required.</small
       >
+    </div>
+    <div class="field">
+      <label for="nombreartistico">Nombre artistico</label>
+      <input
+        type="text"
+        pInputText
+        id="nombreartistico"
+        [(ngModel)]="artista.nombreartistico"
+        required
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !artista.nombreartistico"
+        >Artistic Name is required.</small
+      >
+    </div>
+    <div class="field">
+      <label for="correo">Correo</label>
+      <input
+        class="w-100"
+        pInputText
+        id="email"
+        aria-describedby="email-help"
+        [ngModel]="artista.correo"
+        (ngModelChange)="artista.correo = $event.toString()"
+        placeholder="Ingresa tu email"
+        pTooltip="Ingresa tu Correo electrónico"
+        tooltipPosition="left"
+        [pKeyFilter]="blockChars"
+      />
+      <small class="p-error" *ngIf="submitted && !artista.correo"
+        >Email is required.</small
+      >
+      <small class="p-error" *ngIf="emailError && artista.correo">{{
+        emailError
+      }}</small>
+    </div>
+    <div class="field">
+      <label class="w-9">Contraseña</label>
+      <p-password
+        class="input-password"
+        placeholder="Ingresa una contraseña"
+        [ngModel]="artista.contrasena"
+        (ngModelChange)="artista.contrasena = $event.toString()"
+        [toggleMask]="true"
+        [pKeyFilter]="blockChars"
+        weakLabel="Débil"
+        mediumLabel="Medio"
+        strongLabel="Fuerte"
+        promptLabel="Ingresa una contraseña"
+        [inputStyle]="{ 'padding-right': '0.5rem' }"
+      ></p-password>
+      <small class="p-error" *ngIf="submitted && !artista.contrasena"
+        >Password is required.</small
+      >
+    </div>
+
+    <div class="field">
+      <label for="biografia">Biografía</label>
+      <input
+        type="text"
+        pInputText
+        id="biografia"
+        [(ngModel)]="artista.biografia"
+        required
+        autofocus
+      />
+      <small class="p-error" *ngIf="submitted && !artista.biografia"
+        >Biografy is required.</small
+      >
+    </div>
+
+    <div class="field">
+      <label class="w-9">Teléfono</label>
+      <p-inputMask
+        class="input-phone"
+        mask="(999) 999-9999"
+        [ngModel]="artista.telefono"
+        (ngModelChange)="artista.telefono = $event.toString()"
+        placeholder="(999) 999-9999"
+        pTooltip="Ingresa tu número de teléfono"
+        tooltipPosition="left"
+        type="phone"
+        [size]="20"
+        [pKeyFilter]="blockChars"
+      ></p-inputMask>
+
+      <small class="p-error" *ngIf="phoneError">{{ phoneError }}</small>
     </div>
   </ng-template>
 
@@ -140,7 +223,7 @@
       label="Guardar"
       icon="pi pi-check"
       class="p-button-text"
-      (click)="saveProduct()"
+      (click)="saveArtist()"
     ></button>
   </ng-template>
 </p-dialog>
